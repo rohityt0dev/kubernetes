@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nodelable
+spec:
+  containers:
+  - name: co1
+    image: ubuntu
+  nodeSelector:
+    name: workernode1
+
