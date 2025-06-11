@@ -1,0 +1,15 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: testpod
+  annotations:
+     description: my first pod
+spec:
+  containers:
+    - name: c1
+      image: ubuntu
+      command: ["/bin/bash", "-c", "while true; do echo my first cont ; sleep 5; done"]
+      env:
+      - name: MyName
+        value: sanjay
+
