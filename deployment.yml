@@ -1,0 +1,23 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mydeployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+        name: sanjay
+  template:
+    metadata:
+      labels:
+        name: sanjay
+    spec:
+      containers:
+        - name: co1
+          image: nginx:latest
+          ports:
+            - containerPort: 80
+          command: ["/bin/bash", "-c", "while true; do echo my first cont ; sleep 5; done"]
+
+
