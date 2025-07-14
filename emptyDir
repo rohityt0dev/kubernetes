@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: testpod
+  annotations:
+    description: "my first pod"
+spec:
+  containers:
+    - name: c1
+      image: ubuntu
+      command: ["/bin/bash", "-c", "while true; do echo my first cont ; sleep 5; done"]
+      volumeMounts:
+        - name: insys-data
+          mountPath: "/tmp/insys-data"
+
+    - name: c2
+      image: ubuntu
+      command: ["/bin/bash", "-c", "while true; do echo my second cont ; sleep 5; done"]
+      volumeMounts:
+        - name: insys-data
+          mountPath: "/tmp/insys-file"
+
+    - name: c3
+      image: ubuntu
+      command: ["/bin/bash", "-c", "while true; do echo my third cont ; sleep 5; done"]
+      volumeMounts:
+        - name: insys-storage
+          mountPath: "/tmp/insys-storage"
+
+  volumes:
+    - name: insys-data
+      emptyDir: {}
+
+    - name: insys-storage
+      emptyDir: {}
+
+
