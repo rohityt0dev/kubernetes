@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pvdeploy
+spec:
+  replicas: 1
+  selector:
+     matchLabels:
+       app: pv
+  template:
+     metadata:
+       labels:
+         app: pv
+     spec:
+        containers:
+            - name: pvcont
+              image: ubuntu
+              command: ["bin/bash", "-c", "sleep 10000"]
+              volumeMounts:
+                - name: myvolumemount
+                  mountPath: "/tmp/persistent"
+        volumes:
+          - name: myvolumemount
+            persistentVolumeClaim:
+                claimName: insysvolumeclaim
+
